@@ -1,5 +1,6 @@
 package webdriver;
 
+import java.awt.Window;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Flipkart {
 
@@ -19,7 +22,8 @@ public class Flipkart {
 		driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		driver.get("https://www.flipkart.com/");
-
+		String pw = driver.getWindowHandle();
+		System.out.println(pw);
 		driver.findElement(By.xpath("//button[@class=\"_2KpZ6l _2doB4z\"]")).click();
 		// String pw = driver.getWindowHandle();
 		// System.out.println(pw);
@@ -40,13 +44,36 @@ public class Flipkart {
 				.findElement(By.xpath("//img[@alt='BRITANNIA Little Hearts Classic Sweet & Salty']"));
 		biscuits.click();
 		System.out.println(driver.getTitle());
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		// driver.manage().window().maximize();
+		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		// WebElement ele = driver.findElement(By.linkText("ADD TO BASKET"));
 		// js.executeScript("arguments[0]", ele);
 		// ele.click();
-		WebElement ele = driver.findElement(By.xpath("//*[text()='ADD TO BASKET']"));
-		ele.click();
+		Set<String> wn = driver.getWindowHandles();
+		System.out.println(wn);
+	
+		for (String a : wn) {
+			if (!a.equals(pw)) {
+				System.out.println(a);
+				driver.switchTo().window(a);
+				//WebDriverWait ww = new WebDriverWait(driver, 25);
+				//ww.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[text()='ADD TO BASKET']")));
+				WebElement ele = driver.findElement(By.xpath("//button[text()='ADD TO BASKET']"));
+				// ele.click();
+				//js.executeScript("win)
+				
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ele);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
+			}
+		}
+		//WebDriverWait ww = new WebDriverWait(driver, 25);
+		//ww.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[text()='ADD TO BASKET']")));
+
+		//WebElement ele = driver.findElement(By.xpath("//*[text()='ADD TO BASKET']"));
+		// ele.click();
+
+	//	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ele);
+	//	((JavascriptExecutor) driver).executeScript("arguments[0].click();", ele);
 	}
 
 }

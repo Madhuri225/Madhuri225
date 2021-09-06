@@ -12,7 +12,7 @@ public class Zonal {
 		driver = new ChromeDriver();
 		driver.get("http://mis.nyiso.com/public/");
 		
-		driver.findElement(By.xpath("(//*[text()='Zonal'])[1]")).click();
+		driver.findElement(By.xpath("(//a[text()='Zonal'])[1]")).click();
 		
 
 	}

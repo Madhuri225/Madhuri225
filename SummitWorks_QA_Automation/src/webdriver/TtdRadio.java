@@ -32,8 +32,8 @@ public class TtdRadio {
 		//Error with Explicit wait--Expected condition failed: waiting for visibility of element located by By.xpath: //input[@id='entity'] 
 		//(tried for 20 second(s) with 500 milliseconds interval)
 		WebDriverWait wait = new WebDriverWait(driver, 20);
-		WebElement rd = driver.findElement(By.xpath("(//input[@type = 'radio'])[2]"));
-		wait.until(ExpectedConditions.elementToBeClickable(rd));
+		WebElement rd = driver.findElement(By.xpath("//*[@id='entity']"));
+		wait.until(ExpectedConditions.elementToBeSelected(rd));
 		//wait.until(ExpectedConditions.visibilityOf(rd));
         //for implicit wait error messge is after TimeUnit. there are method suggestions
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SE);

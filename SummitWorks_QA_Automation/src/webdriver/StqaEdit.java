@@ -12,7 +12,7 @@ public static void main(String[] args) {
 			driver = new ChromeDriver();
 			driver.get("https://stqatools.com/demo/WebTable.php");
 			driver.findElement(By.xpath("(//button[@data-target=\"#edit\"])[2]")).click();
-			driver.findElement((By.xpath("(//button[@data-target=\"#edit\"])[2]")).cssSelector(null)
+			//driver.findElement((By.xpath("(//button[@data-target=\"#edit\"])[2]")).cssSelector(null)
 			driver.findElement(By.xpath("//input[@id=\"fn\"]")).sendKeys("aaa");
 			driver.findElement(By.xpath("//input[@id=\"ln\"]")).sendKeys("bbb");
 			driver.findElement(By.xpath("//input[@id=\"mn\"]")).sendKeys("ccc");
